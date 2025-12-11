@@ -290,7 +290,7 @@
       <div class="container">
         <div class="grid md:grid-cols-3 grid-cols-1 gap-6">
           <div class="md:col-span-2 col-span-1">
-            <div class="bg-primary md:px-[36px] md:py-[83px] md:py-10 rounded-3xl h-full">
+            <div class="bg-primary md:px-[36px] md:py-[83px] p-6 rounded-3xl h-full">
 
               <h2 class="text-white md:text-3xl text-2xl font-bold leading-[160%]">
                 Have <span class="text-black">Question, Project, Consultant</span> or Any thing? <span class="text-[#FFCACA]">Don't hesitate</span> we are here.
@@ -380,7 +380,7 @@
       <div class="container relative z-10">
 
         <!-- Footer Header -->
-        <div class="flex justify-center flex-col md:pb-[60px] pb-10 w-[500px] mx-auto text-center">
+        <div class="flex justify-center flex-col md:pb-[60px] pb-10 w-[500px] mx-auto text-center max-w-full">
           <div class="text-primary">Get Start ?</div>
 
           <h2 class="md:text-[64px] text-4xl text-white leading-[150%] py-5">

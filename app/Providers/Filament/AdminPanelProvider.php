@@ -28,8 +28,24 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandLogo(asset('images/logo-dark.svg'))
+            ->darkModeBrandLogo(asset('images/logo-light.svg'))
+            ->brandLogoHeight('50px')
+            ->favicon(asset('images/favicon.png'))
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => '#e8f8f2',
+                    100 => '#c8efe0',
+                    200 => '#a3e3cb',
+                    300 => '#7ed7b6',
+                    400 => '#58cda1',
+                    500 => '#3db98a',
+                    600 => '#33a67d',
+                    700 => '#2a8b69',
+                    800 => '#216f55',
+                    900 => '#164c3a',
+                    950 => '#0d2e23',
+                ],
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
