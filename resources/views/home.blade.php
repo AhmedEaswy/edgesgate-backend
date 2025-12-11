@@ -263,31 +263,76 @@
                 Have <span class="text-black">Question, Project, Consultant</span> or Any thing? <span class="text-[#FFCACA]">Don't hesitate</span> we are here.
               </h2>
 
-              <form class="md:mt-[60px] mt-10">
+              <form class="md:mt-[60px] mt-10" x-data="contactForm" @submit.prevent="submit">
+                <!-- Success Message -->
+                <div x-show="success" x-transition class="mb-6 p-4 bg-black/20 border border-black/30 rounded-lg">
+                  <p class="text-white font-medium" x-text="successMessage"></p>
+                </div>
+
+                <!-- Error Message -->
+                <div x-show="errorMessage && !success" x-transition class="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
+                  <p class="text-white font-medium" x-text="errorMessage"></p>
+                </div>
+
                 <div class="grid md:grid-cols-2 grid-cols-1 gap-x-8 gap-y-[47px]">
 
                   <div class="x-input-group">
                     <label class="x-input-label">Your Name</label>
-                    <input type="text" class="x-input" placeholder="Enter Your Name Here">
+                    <input
+                      type="text"
+                      class="x-input"
+                      :class="errors.name ? 'border-red-500' : ''"
+                      placeholder="Enter Your Name Here"
+                      x-model="form.name"
+                      required
+                    >
+                    <p x-show="errors.name" class="text-red-300 text-sm mt-1" x-text="errors.name?.[0]"></p>
                   </div>
 
                   <div class="x-input-group">
                     <label class="x-input-label">Email / Phone</label>
-                    <input type="text" class="x-input" placeholder="Enter Contact Email or Phone">
+                    <input
+                      type="text"
+                      class="x-input"
+                      :class="errors.email_or_phone ? 'border-red-500' : ''"
+                      placeholder="Enter Contact Email or Phone"
+                      x-model="form.email_or_phone"
+                      required
+                    >
+                    <p x-show="errors.email_or_phone" class="text-red-300 text-sm mt-1" x-text="errors.email_or_phone?.[0]"></p>
                   </div>
 
                   <div class="x-input-group md:col-span-2">
                     <label class="x-input-label">Your Message</label>
-                    <input type="text" class="x-input" placeholder="Enter Your Message">
+                    <textarea
+                      class="x-input min-h-[100px]"
+                      :class="errors.message ? 'border-red-500' : ''"
+                      placeholder="Enter Your Message"
+                      x-model="form.message"
+                      rows="3"
+                    ></textarea>
+                    <p x-show="errors.message" class="text-red-300 text-sm mt-1" x-text="errors.message?.[0]"></p>
                   </div>
 
                   <div class="md:col-span-2">
-                    <button type="submit" class="btn btn-neutral btn-outline btn-lg border-black rounded-full font-inter w-[197px] max-w-full flex justify-between !h-[70px] !p-[10px]">
-                      <span class="px-4 text-xl text-black">Submit</span>
-                      <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button
+                      type="submit"
+                      class="btn btn-neutral btn-outline btn-lg border-black rounded-full font-inter w-[197px] max-w-full flex justify-between !h-[70px] !p-[10px]"
+                      :disabled="loading"
+                      :class="loading ? 'opacity-70 cursor-not-allowed' : ''"
+                    >
+                      <span class="px-4 text-xl text-black" x-text="loading ? 'Sending...' : 'Submit'"></span>
+                      <svg x-show="!loading" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="50" height="50" rx="25" fill="black"/>
                         <path d="M34.0001 17V30C34.0001 30.2652 33.8947 30.5196 33.7072 30.7071C33.5196 30.8946 33.2653 31 33.0001 31C32.7349 31 32.4805 30.8946 32.293 30.7071C32.1054 30.5196 32.0001 30.2652 32.0001 30V19.4137L17.7076 33.7075C17.5199 33.8951 17.2654 34.0006 17.0001 34.0006C16.7347 34.0006 16.4802 33.8951 16.2926 33.7075C16.1049 33.5199 15.9995 33.2654 15.9995 33C15.9995 32.7346 16.1049 32.4801 16.2926 32.2925L30.5863 18H20.0001C19.7349 18 19.4805 17.8946 19.293 17.7071C19.1054 17.5196 19.0001 17.2652 19.0001 17C19.0001 16.7348 19.1054 16.4804 19.293 16.2929C19.4805 16.1054 19.7349 16 20.0001 16H33.0001C33.2653 16 33.5196 16.1054 33.7072 16.2929C33.8947 16.4804 34.0001 16.7348 34.0001 17Z" fill="#3DB98A"/>
                       </svg>
+                      <!-- Loading spinner -->
+                      <div x-show="loading" class="w-[50px] h-[50px] min-w-[50px] flex items-center justify-center bg-black rounded-full">
+                        <svg class="animate-spin h-6 w-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      </div>
                     </button>
                   </div>
 

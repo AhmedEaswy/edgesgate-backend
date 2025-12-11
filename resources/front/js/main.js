@@ -13,6 +13,54 @@ Alpine.plugin(collapse)
 
 window.Alpine = Alpine
 
+Alpine.data('contactForm', () => ({
+    form: {
+        name: '',
+        email_or_phone: '',
+        message: '',
+    },
+    errors: {},
+    loading: false,
+    success: false,
+    successMessage: '',
+    errorMessage: '',
+
+    async submit() {
+        this.loading = true;
+        this.errors = {};
+        this.success = false;
+        this.errorMessage = '';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(this.form),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                this.success = true;
+                this.successMessage = data.message;
+                this.form = { name: '', email_or_phone: '', message: '' };
+            } else {
+                if (data.errors) {
+                    this.errors = data.errors;
+                }
+                this.errorMessage = data.message || 'Something went wrong. Please try again.';
+            }
+        } catch (error) {
+            this.errorMessage = 'Network error. Please check your connection and try again.';
+        } finally {
+            this.loading = false;
+        }
+    },
+}));
+
 Alpine.data('layout', () => ({
     init() {
         const checkWidth = () => {
