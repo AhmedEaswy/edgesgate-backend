@@ -1,0 +1,42 @@
+.x-input-group {
+    @apply flex flex-col gap-2 font-content;
+
+    .x-input-label {
+        @apply text-base text-black;
+    }
+
+    .x-input {
+        @apply border-b border-black text-black text-sm py-2 outline-none;
+
+        &::placeholder {
+            @apply font-extralight;
+        }
+    }
+}
+
+.x-contact-info {
+    @apply font-content border border-[#DADADA] rounded-2xl p-6 rounded-3xl px-6 py-4 h-[394px] flex items-center justify-center relative;
+
+    .x-contact-info__title {
+        @apply flex items-center gap-4 text-[#DADADA] font-semibold text-[32px];
+    }
+
+    .x-contact-info__action {
+        @apply absolute start-6 bottom-4 flex gap-4 items-center text-white duration-300 hover:text-primary transition-all ease-in-out;
+
+        svg {
+            @apply text-[#DADADA] duration-300 ease-in-out transition-all;
+        }
+    }
+
+    &:hover {
+        .x-contact-info__action {
+            @apply text-primary;
+
+            svg {
+                @apply text-primary fill-primary;
+            }
+        }
+
+    }
+}

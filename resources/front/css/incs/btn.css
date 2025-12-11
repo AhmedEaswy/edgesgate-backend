@@ -1,0 +1,21 @@
+.btn {
+    box-shadow: none !important;
+}
+
+/* .btn-light.btn-outline {
+    --btn-color: #FFFFFF;
+} */
+
+.btn-lg {
+    @apply text-sm;
+    --btn-p: 1.25rem;
+    --size: 50px;
+}
+
+.x-social-item {
+    @apply text-[10px] cursor-pointer h-[28px] bg-secondary hover:bg-primary text-white rounded-full flex items-center justify-center gap-[6px] duration-300 ease-in-out transition-all py-1 px-3;
+
+    svg {
+        @apply fill-white;
+    }
+}

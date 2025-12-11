@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "Alice";
+    src: url('/public/fonts/front/Alice-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'alien-ai';
+    src: url('/public/fonts/front/AlienAi.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'alien-ai';
+    src: url('/public/fonts/front/AlienAiItalic.ttf') format('truetype');
+    font-style: italic;
+}
+
+.x-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+[dir="rtl"] .ltr {
+    @apply text-end;
+}
+
+.x-title {
+    @apply flex items-center gap-[22px] md:text-2xl text-lg text-black font-bold relative;
+
+    &:before {
+        content: '';
+        @apply h-[34px] w-[34px] bg-[#F0F0F0]/70 rounded-full relative;
+    }
+
+    &:after {
+        content: '';
+        @apply h-[16px] w-[16px] bg-[#000000] rounded-full absolute top-[9px] start-[9px] z-10;
+    }
+}
+
+.x-footer-list {
+    @apply flex flex-col gap-2 p-0 list-none text-white;
+    li, li a {
+        @apply text-[#D9D9D9] text-lg font-secondary font-light hover:text-primary duration-300 ease-in-out transition-all;
+    }
+}

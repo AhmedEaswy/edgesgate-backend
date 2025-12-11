@@ -1,0 +1,54 @@
+@media (max-width: 768px) {
+    :root, .x-navbar, .x-hero {
+        --navbar-height: 74px;
+    }
+}
+
+body {
+    letter-spacing: 1px;
+}
+
+html, body {
+    scroll-behavior: smooth;
+}
+
+.x-navbar {
+    @apply h-[var(--navbar-height)] fixed top-0 left-0 right-0 z-50;
+    .navbar {
+        @apply shadow-none items-center;
+        &, .menu {
+            @apply bg-transparent;
+        }
+        .menu li a {
+            @apply text-white hover:text-primary font-medium text-base hover:bg-transparent text-lg;
+        }
+    }
+
+    &.x-active {
+        .x-navbar-menu li {
+            a {
+                @apply text-secondary-500;
+            }
+        }
+    }
+}
+
+.container {
+    @apply 2xl:max-w-[1360px] xl:max-w-[1360px] lg:max-w-[1024px] md:max-w-[768px] w-full mx-auto px-4;
+}
+
+.x-shadow-light {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+}
+
+html, body {
+    scroll-behavior: smooth;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    @apply hover:text-primary cursor-pointer duration-300 ease-in-out absolute top-0 translate-y-[-100%] end-0;
+}
+
+.swiper-button-prev {
+    @apply translate-x-[-100%];
+}
