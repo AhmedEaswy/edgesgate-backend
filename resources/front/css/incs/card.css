@@ -17,8 +17,8 @@
         @apply font-content text-lg font-extralight leading-[120%] line-clamp-4 relative duration-300 ease-in-out transition-all;
     }
 
-    .x-service-card__title:after, 
-    .x-service-card__description:after, 
+    .x-service-card__title:after,
+    .x-service-card__description:after,
     .x-service-card__img:after {
         @apply content-[''] transition-all duration-300 ease-in-out absolute inset-0;
     }
@@ -26,9 +26,9 @@
 
 .x-services-slider-style {
     .swiper-slide {
-        &:not(.swiper-slide-prev,.swiper-slide-next,.swiper-slide-active) .x-service-card {    
-            .x-service-card__title:after, 
-            .x-service-card__description:after, 
+        &:not(.swiper-slide-prev,.swiper-slide-next,.swiper-slide-active) .x-service-card {
+            .x-service-card__title:after,
+            .x-service-card__description:after,
             .x-service-card__img:after {
                 @apply content-[''] absolute inset-0 bg-gray-200;
             }
@@ -45,14 +45,14 @@
 
         &:after {
             @apply content-[''] absolute inset-0 duration-300 ease-in-out transition-all opacity-0;
-            background-image: url('/public/noise.gif');
+            background-image: url('/images/noise.gif');
             background-size: 100% 100%;
             background-position: center;
             background-repeat: no-repeat;
             transition: opacity 0.3s ease-in-out;
             z-index: 1;
         }
-    
+
         img {
             @apply w-full object-cover min-w-full h-full;
         }
@@ -72,7 +72,7 @@
 
 .x-projects-slider-style {
     .swiper-slide {
-        &:not(.swiper-slide-active) .x-project-card {    
+        &:not(.swiper-slide-active) .x-project-card {
             .x-project-card__img:after {
                 @apply !opacity-100;
             }
