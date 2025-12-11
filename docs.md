@@ -273,6 +273,7 @@ TextInput::make('name')
 // File Upload (image)
 FileUpload::make('image')
     ->image()
+    ->disk('public')  // Store in public disk for web access
     ->acceptedFileTypes(['image/png', 'image/webp', 'image/gif', 'image/jpeg', 'image/jpg'])
     ->directory('{model_plural}')  // e.g., 'services'
     ->columnSpanFull(),

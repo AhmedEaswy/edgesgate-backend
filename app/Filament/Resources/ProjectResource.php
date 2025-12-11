@@ -56,6 +56,7 @@ class ProjectResource extends Resource
 
                         FileUpload::make('image')
                             ->image()
+                            ->disk('public')
                             ->acceptedFileTypes(['image/png', 'image/webp', 'image/gif', 'image/jpeg', 'image/jpg'])
                             ->directory('projects')
                             ->columnSpanFull(),

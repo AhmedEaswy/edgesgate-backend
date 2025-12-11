@@ -4,7 +4,30 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Edges Gate') }}</title>
+        <!-- Primary Meta Tags -->
+        <title>{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}</title>
+        <meta name="title" content="{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}">
+        <meta name="description" content="{{ $settings['seo']['meta_description'] ?? 'Your gate for endless software development. We craft innovative web, mobile, and software solutions.' }}">
+        <meta name="keywords" content="{{ $settings['seo']['meta_keywords'] ?? 'software development, web design, mobile apps, digital solutions' }}">
+        <meta name="author" content="{{ $settings['general']['site_name'] ?? 'Edges Gate' }}">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="{{ url()->current() }}">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}">
+        <meta property="og:description" content="{{ $settings['seo']['meta_description'] ?? 'Your gate for endless software development. We craft innovative web, mobile, and software solutions.' }}">
+        <meta property="og:image" content="{{ $settings['seo']['og_image'] ?? asset('images/og-image.png') }}">
+        <meta property="og:site_name" content="{{ $settings['general']['site_name'] ?? 'Edges Gate' }}">
+        <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url()->current() }}">
+        <meta property="twitter:title" content="{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}">
+        <meta property="twitter:description" content="{{ $settings['seo']['meta_description'] ?? 'Your gate for endless software development. We craft innovative web, mobile, and software solutions.' }}">
+        <meta property="twitter:image" content="{{ $settings['seo']['og_image'] ?? asset('images/og-image.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +35,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
-        <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.png') }}" />
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
+
+        <!-- Theme Color -->
+        <meta name="theme-color" content="#3db98a">
+        <meta name="msapplication-TileColor" content="#3db98a">
 
         @vite(['resources/front/css/main.css'])
     </head>
@@ -79,6 +108,7 @@
     </section>
 
     <!-- Services -->
+    @if($services->count() > 0)
     <section class="md:py-20 py-10" id="services">
       <div class="container overflow-hidden">
         <h2 class="x-title">Services</h2>
@@ -89,60 +119,21 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
+              @foreach($services as $service)
               <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
                 <div class="x-service-card">
                   <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1">
+                    @if($service->image)
+                      <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}">
+                    @else
+                      <img src="{{ asset('images/content-creator.gif') }}" alt="{{ $service->name }}">
+                    @endif
                   </div>
-                  <h3 class="x-service-card__title">Web design</h3>
-                  <p class="x-service-card__description">Crafting visually stunning, user-friendly websites that engage visitors and deliver seamless experiences across all devices.</p>
+                  <h3 class="x-service-card__title">{{ $service->name }}</h3>
+                  <p class="x-service-card__description">{{ $service->description }}</p>
                 </div>
               </div>
-              <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
-                  <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1" class="x-service-card__img">
-                  </div>
-                  <h3 class="x-service-card__title">Mobile Apps</h3>
-                  <p class="x-service-card__description">Driving growth with strategic online campaigns, enhancing brand visibility, and increasing conversions through SEO, social media</p>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
-                  <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1" class="x-service-card__img">
-                  </div>
-                  <h3 class="x-service-card__title">Web design</h3>
-                  <p class="x-service-card__description">Crafting visually stunning, user-friendly websites that engage visitors and deliver seamless experiences across all devices.</p>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
-                  <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1" class="x-service-card__img">
-                  </div>
-                  <h3 class="x-service-card__title">Web design</h3>
-                  <p class="x-service-card__description">Crafting visually stunning, user-friendly websites that engage visitors and deliver seamless experiences across all devices.</p>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
-                  <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1" class="x-service-card__img">
-                  </div>
-                  <h3 class="x-service-card__title">Mobile Apps</h3>
-                  <p class="x-service-card__description">Driving growth with strategic online campaigns, enhancing brand visibility, and increasing conversions through SEO, social media</p>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
-                  <div class="x-service-card__img">
-                    <img src="{{ asset('images/content-creator.gif') }}" alt="service-1" class="x-service-card__img">
-                  </div>
-                  <h3 class="x-service-card__title">Web design</h3>
-                  <p class="x-service-card__description">Crafting visually stunning, user-friendly websites that engage visitors and deliver seamless experiences across all devices.</p>
-                </div>
-              </div>
+              @endforeach
             </div>
 
             <!-- If we need pagination -->
@@ -163,6 +154,7 @@
         </div>
       </div>
     </section>
+    @endif
 
     <!-- CTA -->
     <section class="md:py-20 py-16 relative" id="cta">
@@ -170,12 +162,12 @@
 
       <div class="container relative z-10">
         <div class="text-center">
-          <h2 class="md:text-5xl md:tex-[40px] text-3xl text-white font-bold font-primary">Ready to start ?</h2>
+          <h2 class="md:text-5xl md:tex-[40px] text-3xl text-white font-bold font-primary">{{ $settings['general']['cta_title'] ?? 'Ready to start ?' }}</h2>
           <p class="font-content text-white font-light my-7">
-            Transform Your Ideas into Digital Solutions. Explore our portfolio of innovative
+            {{ $settings['general']['cta_description'] ?? 'Transform Your Ideas into Digital Solutions. Explore our portfolio of innovative
             software, web, and mobile projects, and let’s build the future together.Transform
             Your Ideas into Digital Solutions. Explore our portfolio of innovative software, web,
-            and mobile projects, and let’s build the future together.
+            and mobile projects, and let’s build the future together.' }}
           </p>
           <a href="#contact" class="btn h-[40px] text-sm bg-white border-[2px] border-primary/30 rounded-none btn-outline font-content">Contact Us</a>
         </div>
@@ -196,12 +188,12 @@
             </div>
 
             <div class="w-full max-w-full">
-              <h2 class="font-secondary md:mb-6 mb-4 text-3xl">Solving Problems Throw Software Development</h2>
+              <h2 class="font-secondary md:mb-6 mb-4 text-3xl">{{ $settings['general']['about_us_title'] ?? 'Solving Problems Throw Software Development' }}</h2>
               <p class="font-content text-base font-light">
-                Transform Your Ideas into Digital Solutions. Explore our portfolio of innovative
+                {{ $settings['general']['about_us_description'] ?? 'Transform Your Ideas into Digital Solutions. Explore our portfolio of innovative
                 software, web, and mobile projects, and let’s build the future together.Transform
                 Your Ideas into Digital Solutions. Explore our portfolio of innovative software, web,
-                and mobile projects, and let’s build the future together.
+                and mobile projects, and let’s build the future together.' }}
               </p>
             </div>
           </div>
@@ -210,6 +202,7 @@
     </section>
 
     <!-- Our Projects -->
+    @if($projects->count() > 0)
     <section class="md:py-20 py-10" id="projects">
       <div class="container overflow-hidden">
         <h2 class="x-title">Our Projects</h2>
@@ -220,50 +213,23 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
+              @foreach($projects as $project)
               <div class="swiper-slide md:max-w-[668px] max-w-[400px]">
                 <div class="x-project-card">
                   <div class="x-project-card__img">
-                    <img src="{{ asset('images/project-1.png') }}" alt="project-1">
+                    @if($project->image)
+                      <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->name }}">
+                    @else
+                      <img src="{{ asset('images/project-1.png') }}" alt="{{ $project->name }}">
+                    @endif
                   </div>
                   <div class="x-project-card__content">
-                    <h3 class="x-project-card__title">Pexels</h3>
-                    <p class="x-project-card__tag">UI/UX Design</p>
+                    <h3 class="x-project-card__title">{{ $project->name }}</h3>
+                    <p class="x-project-card__tag">{{ $project->tag }}</p>
                   </div>
                 </div>
               </div>
-              <div class="swiper-slide md:max-w-[668px] max-w-[400px]">
-                <div class="x-project-card">
-                  <div class="x-project-card__img">
-                    <img src="{{ asset('images/project-1.png') }}" alt="project-1">
-                  </div>
-                  <div class="x-project-card__content">
-                    <h3 class="x-project-card__title">Pexels</h3>
-                    <p class="x-project-card__tag">UI/UX Design</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[668px] max-w-[400px]">
-                <div class="x-project-card">
-                  <div class="x-project-card__img">
-                    <img src="{{ asset('images/project-1.png') }}" alt="project-1">
-                  </div>
-                  <div class="x-project-card__content">
-                    <h3 class="x-project-card__title">Pexels</h3>
-                    <p class="x-project-card__tag">UI/UX Design</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide md:max-w-[668px] max-w-[400px]">
-                <div class="x-project-card">
-                  <div class="x-project-card__img">
-                    <img src="{{ asset('images/project-1.png') }}" alt="project-1">
-                  </div>
-                  <div class="x-project-card__content">
-                    <h3 class="x-project-card__title">Pexels</h3>
-                    <p class="x-project-card__tag">UI/UX Design</p>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
 
             <!-- If we need pagination -->
@@ -284,6 +250,7 @@
         </div>
       </div>
     </section>
+    @endif
 
     <!-- Contact -->
     <section class="py-14 bg-black" id="contact">
@@ -341,14 +308,14 @@
                   <span>TELEGRAM</span>
                 </div>
 
-                <div class="x-contact-info__action">
+                <a href="{{ $settings['social']['telegram'] ?? '#' }}" target="_blank" class="x-contact-info__action">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="40" height="40" rx="20" fill="currentColor"/>
                     <path d="M29.0001 12V25C29.0001 25.2652 28.8947 25.5196 28.7072 25.7071C28.5196 25.8946 28.2653 26 28.0001 26C27.7349 26 27.4805 25.8946 27.293 25.7071C27.1054 25.5196 27.0001 25.2652 27.0001 25V14.4137L12.7076 28.7075C12.5199 28.8951 12.2654 29.0006 12.0001 29.0006C11.7347 29.0006 11.4802 28.8951 11.2926 28.7075C11.1049 28.5199 10.9995 28.2654 10.9995 28C10.9995 27.7346 11.1049 27.4801 11.2926 27.2925L25.5863 13H15.0001C14.7349 13 14.4805 12.8946 14.293 12.7071C14.1054 12.5196 14.0001 12.2652 14.0001 12C14.0001 11.7348 14.1054 11.4804 14.293 11.2929C14.4805 11.1054 14.7349 11 15.0001 11H28.0001C28.2653 11 28.5196 11.1054 28.7072 11.2929C28.8947 11.4804 29.0001 11.7348 29.0001 12Z" fill="black"/>
                   </svg>
 
                   <span>Join Chat</span>
-                </div>
+                </a>
               </div>
 
               <div class="x-contact-info">
@@ -360,14 +327,14 @@
                   <span>WHATSAPP</span>
                 </div>
 
-                <div class="x-contact-info__action">
+                <a href="{{ $settings['social']['whatsapp'] ?? '#' }}" target="_blank" class="x-contact-info__action">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="40" height="40" rx="20" fill="currentColor"/>
                     <path d="M29.0001 12V25C29.0001 25.2652 28.8947 25.5196 28.7072 25.7071C28.5196 25.8946 28.2653 26 28.0001 26C27.7349 26 27.4805 25.8946 27.293 25.7071C27.1054 25.5196 27.0001 25.2652 27.0001 25V14.4137L12.7076 28.7075C12.5199 28.8951 12.2654 29.0006 12.0001 29.0006C11.7347 29.0006 11.4802 28.8951 11.2926 28.7075C11.1049 28.5199 10.9995 28.2654 10.9995 28C10.9995 27.7346 11.1049 27.4801 11.2926 27.2925L25.5863 13H15.0001C14.7349 13 14.4805 12.8946 14.293 12.7071C14.1054 12.5196 14.0001 12.2652 14.0001 12C14.0001 11.7348 14.1054 11.4804 14.293 11.2929C14.4805 11.1054 14.7349 11 15.0001 11H28.0001C28.2653 11 28.5196 11.1054 28.7072 11.2929C28.8947 11.4804 29.0001 11.7348 29.0001 12Z" fill="black"/>
                   </svg>
 
                   <span>Join Chat</span>
-                </div>
+                </a>
               </div>
 
             </div>
@@ -388,13 +355,13 @@
           </h2>
 
           <div class="flex flex-wrap gap-3 justify-center">
-            <div class="x-social-item">
+            <a href="{{ $settings['social']['facebook'] }}" target="_blank" class="x-social-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
               </svg>
               <span>Facebook</span>
-            </div>
-            <div class="x-social-item">
+            </a>
+            <!-- <div class="x-social-item">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.4249 7.33V8.74417C10.721 8.29306 11.1292 7.92658 11.6095 7.68059C12.0898 7.4346 12.6258 7.31753 13.1649 7.34083C16.0441 7.34083 16.6666 9.14083 16.6666 11.4825V16.25H13.9999V12.0233C13.9999 11.015 13.7966 9.71833 12.2266 9.71833C10.7041 9.71833 10.4441 10.8158 10.4441 11.9483V16.25H7.78573V7.33H10.4249ZM5.99989 5.08833C5.99956 5.3525 5.92126 5.6107 5.77479 5.83054C5.62833 6.05039 5.42022 6.22211 5.17656 6.32417C4.933 6.4254 4.66483 6.45188 4.40617 6.40024C4.14751 6.3486 3.91007 6.22117 3.72406 6.03417C3.5377 5.84705 3.41082 5.60901 3.35939 5.34997C3.30795 5.09094 3.33425 4.82248 3.43498 4.57836C3.53572 4.33423 3.70638 4.12534 3.92551 3.97795C4.14465 3.83056 4.40247 3.75125 4.66656 3.75C4.84208 3.75 5.01587 3.78465 5.17796 3.85197C5.34006 3.91929 5.48726 4.01795 5.61114 4.14229C5.73502 4.26663 5.83313 4.41421 5.89984 4.57655C5.96655 4.7389 6.00055 4.91282 5.99989 5.08833Z" fill="white"/>
                 <path d="M5.99992 7.34082H3.33325V16.25H5.99992V7.34082Z" fill="white"/>
@@ -424,7 +391,7 @@
                 <path d="M6.50008 1.6665H13.5001C16.1667 1.6665 18.3334 3.83317 18.3334 6.49984V13.4998C18.3334 14.7817 17.8242 16.0111 16.9178 16.9175C16.0113 17.8239 14.782 18.3332 13.5001 18.3332H6.50008C3.83341 18.3332 1.66675 16.1665 1.66675 13.4998V6.49984C1.66675 5.21796 2.17597 3.98858 3.0824 3.08215C3.98882 2.17573 5.2182 1.6665 6.50008 1.6665ZM6.33341 3.33317C5.53777 3.33317 4.7747 3.64924 4.21209 4.21185C3.64949 4.77446 3.33341 5.53752 3.33341 6.33317V13.6665C3.33341 15.3248 4.67508 16.6665 6.33341 16.6665H13.6667C14.4624 16.6665 15.2255 16.3504 15.7881 15.7878C16.3507 15.2252 16.6667 14.4622 16.6667 13.6665V6.33317C16.6667 4.67484 15.3251 3.33317 13.6667 3.33317H6.33341ZM14.3751 4.58317C14.6513 4.58317 14.9163 4.69292 15.1117 4.88827C15.307 5.08362 15.4167 5.34857 15.4167 5.62484C15.4167 5.9011 15.307 6.16606 15.1117 6.36141C14.9163 6.55676 14.6513 6.6665 14.3751 6.6665C14.0988 6.6665 13.8339 6.55676 13.6385 6.36141C13.4432 6.16606 13.3334 5.9011 13.3334 5.62484C13.3334 5.34857 13.4432 5.08362 13.6385 4.88827C13.8339 4.69292 14.0988 4.58317 14.3751 4.58317ZM10.0001 5.83317C11.1052 5.83317 12.165 6.27216 12.9464 7.05356C13.7278 7.83496 14.1667 8.89477 14.1667 9.99984C14.1667 11.1049 13.7278 12.1647 12.9464 12.9461C12.165 13.7275 11.1052 14.1665 10.0001 14.1665C8.89501 14.1665 7.8352 13.7275 7.0538 12.9461C6.2724 12.1647 5.83341 11.1049 5.83341 9.99984C5.83341 8.89477 6.2724 7.83496 7.0538 7.05356C7.8352 6.27216 8.89501 5.83317 10.0001 5.83317ZM10.0001 7.49984C9.33704 7.49984 8.70115 7.76323 8.23231 8.23207C7.76347 8.70091 7.50008 9.3368 7.50008 9.99984C7.50008 10.6629 7.76347 11.2988 8.23231 11.7676C8.70115 12.2364 9.33704 12.4998 10.0001 12.4998C10.6631 12.4998 11.299 12.2364 11.7678 11.7676C12.2367 11.2988 12.5001 10.6629 12.5001 9.99984C12.5001 9.3368 12.2367 8.70091 11.7678 8.23207C11.299 7.76323 10.6631 7.49984 10.0001 7.49984Z" fill="white"/>
               </svg>
               <span>Instagram</span>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -458,8 +425,8 @@
               <span>Egypt, Cairo</span>
             </h3>
             <ul class="x-footer-list">
-              <li><a href="#">info@edgesgate.com</a></li>
-              <li><a href="#">+2010 123 4567</a></li>
+              <li><a href="mailto:{{ $settings['contact']['email'] ?? '#' }}">{{ $settings['contact']['email'] ?? '#' }}</a></li>
+              <li><a href="tel:{{ $settings['contact']['phone'] ?? '#' }}">{{ $settings['contact']['phone'] ?? '#' }}</a></li>
             </ul>
           </div>
 
