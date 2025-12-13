@@ -254,14 +254,14 @@
     </section>
     @endif
 
-    <div class="sticky inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+    <!-- <div class="sticky inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
       <div class="h-fit w-fit top-[-50%] relative">
         <div class="bg-black h-[100vh] w-screen aspect-square" id="circle-reveal"></div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Contact -->
-    <section class="py-14 relative z-10" id="contact">
+    <section class="py-14 relative z-10 bg-black" id="contact">
       <div class="container">
         <div class="grid md:grid-cols-3 grid-cols-1 gap-6">
           <div class="md:col-span-2 col-span-1">
@@ -398,7 +398,7 @@
       </div>
     </section>
 
-    <footer class="md:pt-[133px] pt-20 relative overflow-hidden">
+    <footer class="md:pt-[133px] pt-20 relative overflow-hidden bg-black">
       <div class="container relative z-10">
 
         <!-- Footer Header -->
