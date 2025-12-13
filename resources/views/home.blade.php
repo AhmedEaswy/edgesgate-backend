@@ -254,7 +254,7 @@
     </section>
     @endif
 
-    <div class="sticky inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-cente">
+    <div class="sticky inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
       <div class="h-fit w-fit top-[-50%] relative">
         <div class="bg-black h-[100vh] w-screen aspect-square" id="circle-reveal"></div>
       </div>
