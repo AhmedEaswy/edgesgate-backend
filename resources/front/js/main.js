@@ -7,7 +7,15 @@ import collapse from '@alpinejs/collapse'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import "flyonui/flyonui"
+import { animate, splitText, stagger, utils } from 'animejs';
+import { onScroll } from 'animejs/events';
 
+// Initialize AOS
+AOS.init({
+    duration: 1000,
+    once: false,
+    offset: 100
+});
 
 Alpine.plugin(collapse)
 
@@ -157,9 +165,109 @@ const projects_swiper = new Swiper('.projects-slider', {
     },
 });
 
-// Initialize AOS
-AOS.init({
-  duration: 1000,
-  once: true,
-  offset: 100
+const splitHeroTitle = splitText('.hero-title', { words: true });
+const splitHeroSubtitle = splitText('.hero-subtitle', { words: true });
+const splitHeroButton = splitText('.hero-button', { words: true });
+
+const splitServicesTitle = splitText('.services-title', { words: true });
+const splitProjectsTitle = splitText('.projects-title', { words: true });
+const splitAboutTitle = splitText('.about-title', { words: true });
+const splitFooterTitle = splitText('.footer-title', { words: true });
+const splitContactTitle = splitText('.contact-title', { words: true });
+
+const animateWords = (target, delay) => {
+    target.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+        y: ['200%', '0%'],
+        duration: 750,
+        ease: 'out(3)',
+        delay: stagger(100, { start: delay }),
+    }));
+}
+
+animateWords(splitHeroTitle, 400);
+animateWords(splitHeroSubtitle, 600);
+animateWords(splitHeroButton, 800);
+
+splitServicesTitle.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+    y: ['150%', '0%'],
+    duration: 750,
+    ease: 'out(3)',
+    autoplay: onScroll({
+        enter: 'bottom-=-1 top',
+        leave: 'top+=1 bottom',
+        sync: true,
+        debug: false,
+    })
+}));
+
+splitProjectsTitle.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+    y: ['150%', '0%'],
+    duration: 750,
+    ease: 'out(3)',
+    autoplay: onScroll({
+        enter: 'bottom-=-1 top',
+        leave: 'top+=1 bottom',
+        sync: true,
+        debug: false,
+    })
+}));
+
+splitAboutTitle.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+    y: ['150%', '0%'],
+    duration: 750,
+    ease: 'out(3)',
+    autoplay: onScroll({
+        enter: 'bottom-=-1 top',
+        leave: 'top+=1 bottom',
+        sync: true,
+        debug: false,
+    })
+}));
+
+splitContactTitle.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+    y: ['200%', '0%'],
+    duration: 750,
+    ease: 'out(3)',
+    autoplay: onScroll({
+        enter: 'bottom-=-10 top',
+        leave: 'top+=50 bottom',
+        sync: true,
+        debug: false,
+    })
+}));
+
+splitFooterTitle.addEffect(({ lines, words, chars }) => animate([lines, words, chars], {
+    y: ['200%', '0%'],
+    duration: 750,
+    ease: 'out(3)',
+    autoplay: onScroll({
+        enter: 'bottom-=-10 top',
+        leave: 'top+=50 bottom',
+        sync: true,
+        debug: false,
+    })
+}));
+
+animate('#circle-reveal', {
+    opacity: [0, 1],
+    autoplay: onScroll({
+        enter: 'bottom+=100 top',
+        leave: 'top+=50 bottom',
+        sync: true,
+        debug: false,
+    })
 });
+
+utils.$('.scroll-up-fade').forEach($el => {
+
+    animate($el, {
+        y: ['0%', '-10%'],
+        opacity: [0, 1],
+        autoplay: onScroll({
+          enter: 'bottom-=-10 top',
+          leave: 'top+=10 bottom',
+          sync: true,
+          debug: false,
+      })
+    })
+})

@@ -18,7 +18,7 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}">
         <meta property="og:description" content="{{ $settings['seo']['meta_description'] ?? 'Your gate for endless software development. We craft innovative web, mobile, and software solutions.' }}">
-        <meta property="og:image" content="{{ $settings['seo']['og_image'] ?? asset('images/og-image.png') }}">
+        <meta property="og:image" content="{{ $settings['seo']['og_image'] ?? asset('images/perview.png') }}">
         <meta property="og:site_name" content="{{ $settings['general']['site_name'] ?? 'Edges Gate' }}">
         <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -27,7 +27,7 @@
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:title" content="{{ $settings['seo']['meta_title'] ?? config('app.name', 'Edges Gate') }}">
         <meta property="twitter:description" content="{{ $settings['seo']['meta_description'] ?? 'Your gate for endless software development. We craft innovative web, mobile, and software solutions.' }}">
-        <meta property="twitter:image" content="{{ $settings['seo']['og_image'] ?? asset('images/og-image.png') }}">
+        <meta property="twitter:image" content="{{ $settings['seo']['og_image'] ?? asset('images/perview.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,10 +98,12 @@
 
       <div class="w-fit max-w-full ms-auto relative z-10 md:-mt-32 mt-10 text-center relative z-20">
         <div class="">
-          <h1 class="w-fit bg-white text-primary px-3 pb-2 leading-[130%] 2xl:text-[96px] xl:text-[72px] lg:text-[50px] md:text-[40px] text-[32px] relative -end-14 w-fit ms-auto">your gate for non endless</h1>
+          <h1 class="hero-title w-fit bg-white text-primary px-3 pb-2 leading-[130%] 2xl:text-[96px] xl:text-[72px] lg:text-[50px] md:text-[40px] text-[32px] relative -end-14 w-fit ms-auto overflow-hidden">
+            your gate for non endless
+          </h1>
           <div class="ms-auto w-fit relative -end-4 text-start">
-            <div class="text-white 2xl:text-[64px] xl:text-[50px] lg:text-[40px] md:text-[32px] text-[24px] w-fit my-2">software development</div>
-            <a href="#contact" class="btn btn-outline btn-light text-white border-white hover:bg-white/30 btn-lg rounded-none ms-1">Get Started</a>
+            <div class="text-white 2xl:text-[64px] xl:text-[50px] lg:text-[40px] md:text-[32px] text-[24px] w-fit my-2 hero-subtitle overflow-hidden">software development</div>
+            <a href="#contact" class="btn btn-outline btn-light text-white border-white hover:bg-white/30 btn-lg rounded-none ms-1 hero-button overflow-hidden">Get Started</a>
           </div>
         </div>
       </div>
@@ -111,7 +113,7 @@
     @if($services->count() > 0)
     <section class="md:py-20 py-10" id="services">
       <div class="container overflow-hidden">
-        <h2 class="x-title">Services</h2>
+        <h2 class="x-title services-title split-text">Services</h2>
 
         <div class="md:mt-[26px] mt-4 relative">
           <!-- Slider main container -->
@@ -121,7 +123,7 @@
               <!-- Slides -->
               @foreach($services as $service)
               <div class="swiper-slide md:max-w-[438px] max-w-[400px]">
-                <div class="x-service-card">
+                <div class="x-service-card hover-3d">
                   <div class="x-service-card__img">
                     @if($service->image)
                       <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}">
@@ -157,7 +159,7 @@
     @endif
 
     <!-- CTA -->
-    <section class="md:py-20 py-16 relative" id="cta">
+    <section class="md:py-20 py-16 relative scroll-up-fade" id="cta">
       <img src="{{ asset('images/bg-1.png') }}" alt="cta-bg" class="absolute inset-0 w-full h-full object-cover z-0">
 
       <div class="container relative z-10">
@@ -179,7 +181,7 @@
     <!-- About Us -->
     <section class="md:py-20 py-10" id="about">
       <div class="container overflow-hidden">
-        <h2 class="x-title">About Us</h2>
+        <h2 class="x-title about-title split-text">About Us</h2>
 
         <div class="md:mt-[70px] mt-4 relative">
           <div class="flex gap-20 items-center overflow-hidden w-full max-w-full md:flex-row flex-col">
@@ -188,8 +190,8 @@
             </div>
 
             <div class="w-full max-w-full">
-              <h2 class="font-secondary md:mb-6 mb-4 text-3xl">{{ $settings['general']['about_us_title'] ?? 'Solving Problems Throw Software Development' }}</h2>
-              <p class="font-content text-base font-light">
+              <h2 class="font-secondary md:mb-6 mb-4 text-3xl" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">{{ $settings['general']['about_us_title'] ?? 'Solving Problems Throw Software Development' }}</h2>
+              <p class="font-content text-base font-light" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
                 {{ $settings['general']['about_us_description'] ?? 'Transform Your Ideas into Digital Solutions. Explore our portfolio of innovative
                 software, web, and mobile projects, and let’s build the future together.Transform
                 Your Ideas into Digital Solutions. Explore our portfolio of innovative software, web,
@@ -205,7 +207,7 @@
     @if($projects->count() > 0)
     <section class="md:py-20 py-10" id="projects">
       <div class="container overflow-hidden">
-        <h2 class="x-title">Our Projects</h2>
+        <h2 class="x-title projects-title split-text">Our Projects</h2>
 
         <div class="md:mt-[26px] mt-4 relative">
           <!-- Slider main container -->
@@ -252,16 +254,24 @@
     </section>
     @endif
 
+    <div class="sticky inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-cente">
+      <div class="h-fit w-fit top-[-50%] relative">
+        <div class="bg-black h-[100vh] w-screen aspect-square" id="circle-reveal"></div>
+      </div>
+    </div>
+
     <!-- Contact -->
-    <section class="py-14 bg-black" id="contact">
+    <section class="py-14 relative z-10" id="contact">
       <div class="container">
         <div class="grid md:grid-cols-3 grid-cols-1 gap-6">
           <div class="md:col-span-2 col-span-1">
             <div class="bg-primary md:px-[36px] md:py-[83px] p-6 rounded-3xl h-full">
 
-              <h2 class="text-white md:text-3xl text-2xl font-bold leading-[160%]">
-                Have <span class="text-black">Question, Project, Consultant</span> or Any thing? <span class="text-[#FFCACA]">Don't hesitate</span> we are here.
-              </h2>
+            <div class="split-text">
+                <h2 class="text-white md:text-3xl text-2xl font-bold leading-[160%] contact-title split-text">
+                    Have <span class="text-black">Question, Project, Consultant</span> or Any thing? <span class="text-[#FFCACA]">Don't hesitate</span> we are here.
+                </h2>
+            </div>
 
               <form class="md:mt-[60px] mt-10" x-data="contactForm" @submit.prevent="submit">
                 <!-- Success Message -->
@@ -344,7 +354,7 @@
           <div class="">
             <div class="flex flex-col gap-6">
 
-              <div class="x-contact-info">
+              <div class="x-contact-info" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                 <div class="x-contact-info__title">
                   <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="63" height="63" rx="31.5" stroke="#DADADA"/>
@@ -363,7 +373,7 @@
                 </a>
               </div>
 
-              <div class="x-contact-info">
+              <div class="x-contact-info" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
                 <div class="x-contact-info__title">
                   <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M43.7501 20.1833C42.2219 18.6402 40.4018 17.4166 38.3959 16.5839C36.3901 15.7513 34.2386 15.3261 32.0667 15.3333C22.9667 15.3333 15.5501 22.75 15.5501 31.85C15.5501 34.7667 16.3167 37.6 17.7501 40.1L15.4167 48.6667L24.1667 46.3667C26.5834 47.6833 29.3001 48.3833 32.0667 48.3833C41.1667 48.3833 48.5834 40.9667 48.5834 31.8667C48.5834 27.45 46.8667 23.3 43.7501 20.1833ZM32.0667 45.5833C29.6001 45.5833 27.1834 44.9167 25.0667 43.6667L24.5667 43.3667L19.3667 44.7333L20.7501 39.6667L20.4167 39.15C19.046 36.9618 18.3183 34.4321 18.3167 31.85C18.3167 24.2833 24.4834 18.1167 32.0501 18.1167C35.7167 18.1167 39.1667 19.55 41.7501 22.15C43.0294 23.4231 44.0433 24.9376 44.7328 26.6056C45.4223 28.2735 45.7737 30.0618 45.7667 31.8667C45.8001 39.4333 39.6334 45.5833 32.0667 45.5833ZM39.6001 35.3167C39.1834 35.1167 37.1501 34.1167 36.7834 33.9667C36.4001 33.8333 36.1334 33.7667 35.8501 34.1667C35.5667 34.5833 34.7834 35.5167 34.5501 35.7833C34.3167 36.0667 34.0667 36.1 33.6501 35.8833C33.2334 35.6833 31.9001 35.2333 30.3334 33.8333C29.1001 32.7333 28.2834 31.3833 28.0334 30.9667C27.8001 30.55 28.0001 30.3333 28.2167 30.1167C28.4001 29.9333 28.6334 29.6333 28.8334 29.4C29.0334 29.1667 29.1167 28.9833 29.2501 28.7167C29.3834 28.4333 29.3167 28.2 29.2167 28C29.1167 27.8 28.2834 25.7667 27.9501 24.9333C27.6167 24.1333 27.2667 24.2333 27.0167 24.2167H26.2167C25.9334 24.2167 25.5001 24.3167 25.1167 24.7333C24.7501 25.15 23.6834 26.15 23.6834 28.1833C23.6834 30.2167 25.1667 32.1833 25.3667 32.45C25.5667 32.7333 28.2834 36.9 32.4167 38.6833C33.4001 39.1167 34.1667 39.3667 34.7667 39.55C35.7501 39.8667 36.6501 39.8167 37.3667 39.7167C38.1667 39.6 39.8167 38.7167 40.1501 37.75C40.5001 36.7833 40.5001 35.9667 40.3834 35.7833C40.2667 35.6 40.0167 35.5167 39.6001 35.3167Z" fill="#DADADA"/>
@@ -388,14 +398,14 @@
       </div>
     </section>
 
-    <footer class="md:pt-[133px] pt-20 bg-black relative overflow-hidden">
+    <footer class="md:pt-[133px] pt-20 relative overflow-hidden">
       <div class="container relative z-10">
 
         <!-- Footer Header -->
         <div class="flex justify-center flex-col md:pb-[60px] pb-10 w-[500px] mx-auto text-center max-w-full">
           <div class="text-primary">Get Start ?</div>
 
-          <h2 class="md:text-[64px] text-4xl text-white leading-[150%] py-5">
+          <h2 class="md:text-[64px] text-4xl text-white leading-[150%] py-5 footer-title">
             Let’s Work Together
           </h2>
 
@@ -443,7 +453,7 @@
         <!-- Footer Content -->
         <div class="flex flex-wrap flex-row justify-between w-full md:gap-0 gap-10">
 
-          <div class="w-96 max-w-full">
+          <div class="w-96 max-w-full" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
             <img
               src="{{ asset('images/logo-light.svg') }}"
               loading="lazy"
@@ -452,7 +462,7 @@
             />
           </div>
 
-          <div class="w-96 max-w-full">
+          <div class="w-96 max-w-full" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
             <h3 class="md:text-[26px] text-xl font-bold text-white flex items-center gap-2 md:mb-6 mb-4">Quick Links</h3>
             <ul class="x-footer-list">
               <li><a href="#">About Us</a></li>
@@ -462,7 +472,7 @@
             </ul>
           </div>
 
-          <div class="w-96 max-w-full">
+          <div class="w-96 max-w-full" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600">
             <h3 class="md:text-[20px] text-xl font-bold text-white flex items-center gap-2 md:mb-6 mb-4">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 8C15.0111 8 14.0444 8.29325 13.2221 8.84265C12.3999 9.39206 11.759 10.173 11.3806 11.0866C11.0022 12.0002 10.9031 13.0055 11.0961 13.9755C11.289 14.9454 11.7652 15.8363 12.4645 16.5355C13.1637 17.2348 14.0546 17.711 15.0245 17.9039C15.9945 18.0969 16.9998 17.9978 17.9134 17.6194C18.827 17.241 19.6079 16.6001 20.1573 15.7779C20.7068 14.9556 21 13.9889 21 13C21 11.6739 20.4732 10.4021 19.5355 9.46447C18.5979 8.52678 17.3261 8 16 8ZM16 16C15.4067 16 14.8266 15.8241 14.3333 15.4944C13.8399 15.1648 13.4554 14.6962 13.2284 14.1481C13.0013 13.5999 12.9419 12.9967 13.0576 12.4147C13.1734 11.8328 13.4591 11.2982 13.8787 10.8787C14.2982 10.4591 14.8328 10.1734 15.4147 10.0576C15.9967 9.94189 16.5999 10.0013 17.1481 10.2284C17.6962 10.4554 18.1648 10.8399 18.4944 11.3333C18.8241 11.8266 19 12.4067 19 13C19 13.7956 18.6839 14.5587 18.1213 15.1213C17.5587 15.6839 16.7956 16 16 16ZM16 2C13.0836 2.00331 10.2877 3.1633 8.22548 5.22548C6.1633 7.28766 5.00331 10.0836 5 13C5 16.925 6.81375 21.085 10.25 25.0312C11.794 26.8144 13.5318 28.4202 15.4312 29.8188C15.5994 29.9365 15.7997 29.9997 16.005 29.9997C16.2103 29.9997 16.4106 29.9365 16.5788 29.8188C18.4747 28.4196 20.2091 26.8139 21.75 25.0312C25.1812 21.085 27 16.925 27 13C26.9967 10.0836 25.8367 7.28766 23.7745 5.22548C21.7123 3.1633 18.9164 2.00331 16 2ZM16 27.75C13.9338 26.125 7 20.1562 7 13C7 10.6131 7.94821 8.32387 9.63604 6.63604C11.3239 4.94821 13.6131 4 16 4C18.3869 4 20.6761 4.94821 22.364 6.63604C24.0518 8.32387 25 10.6131 25 13C25 20.1537 18.0662 26.125 16 27.75Z" fill="white"/>
