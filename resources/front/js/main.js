@@ -251,7 +251,7 @@ splitFooterTitle.addEffect(({ lines, words, chars }) => animate([lines, words, c
 animate('#circle-reveal', {
     opacity: [0, 1],
     autoplay: onScroll({
-        enter: 'bottom+=100 top',
+        enter: 'top=50',
         leave: 'top+=50 bottom',
         sync: true,
         debug: false,
