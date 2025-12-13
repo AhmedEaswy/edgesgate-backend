@@ -70,7 +70,7 @@
 
             <div class="navbar-end items-center gap-4 md:hidden flex">
                 <div class="dropdown relative inline-flex md:hidden order-last" @click.outside="show = false">
-                  <button @click="toggle()" type="button" class="dropdown-toggle btn btn-primary btn-circle btn-outline" aria-haspopup="menu" :aria-expanded="show" aria-label="Dropdown">
+                  <button @click="toggle()" type="button" class="dropdown-toggle btn btn-secondary btn-circle btn-outline" aria-haspopup="menu" :aria-expanded="show" aria-label="Dropdown">
                       <span class="icon-[ph--list] size-5" x-show="!show"></span>
                       <span class="icon-[ph--x] size-5" x-show="show"></span>
                   </button>
@@ -94,16 +94,16 @@
     <!-- Hero -->
     <section class="relative md:h-[760px] h-auto md:py-0 py-16 flex items-center justify-end overflow-hidden" id="home">
       <img src="{{ asset('images/hero.png') }}" alt="hero-bg" class="absolute inset-0 w-full h-full object-cover z-10">
-      <img src="{{ asset('images/hero-arrow.svg') }}" alt="hero-arrow" class="absolute bottom-0 start-0 h-52 w-auto object-contain z-0">
+      <img src="{{ asset('images/hero-arrow.svg') }}" alt="hero-arrow" class="absolute bottom-0 start-0 md:h-52 h-32 w-auto object-contain z-0">
 
       <div class="w-fit max-w-full ms-auto relative z-10 md:-mt-32 mt-10 text-center relative z-20">
         <div class="">
-          <h1 class="hero-title w-fit bg-white text-primary px-3 pb-2 leading-[130%] 2xl:text-[96px] xl:text-[72px] lg:text-[50px] md:text-[40px] text-[32px] relative -end-14 w-fit ms-auto overflow-hidden">
+          <h1 class="hero-title w-fit bg-white text-primary px-3 pb-2 leading-[130%] 2xl:text-[96px] xl:text-[72px] lg:text-[50px] md:text-[40px] text-[20px] relative md:-end-14 -end-4 w-fit ms-auto overflow-hidden">
             your gate for non endless
           </h1>
           <div class="ms-auto w-fit relative -end-4 text-start">
-            <div class="text-white 2xl:text-[64px] xl:text-[50px] lg:text-[40px] md:text-[32px] text-[24px] w-fit my-2 hero-subtitle overflow-hidden">software development</div>
-            <a href="#contact" class="btn btn-outline btn-light text-white border-white hover:bg-white/30 btn-lg rounded-none ms-1 hero-button overflow-hidden">Get Started</a>
+            <div class="text-white 2xl:text-[64px] xl:text-[50px] lg:text-[40px] md:text-[32px] text-[20px] w-fit my-2 hero-subtitle overflow-hidden">software development</div>
+            <a href="#contact" class="btn btn-outline btn-light text-white border-white hover:bg-white/30 md:btn-lg btn-sm rounded-none ms-1 hero-button overflow-hidden">Get Started</a>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@
 
     <!-- CTA -->
     <section class="md:py-20 py-16 relative scroll-up-fade" id="cta">
-      <img src="{{ asset('images/bg-1.png') }}" alt="cta-bg" class="absolute inset-0 w-full h-full object-cover z-0">
+      <img src="{{ asset('images/bg-1.png') }}" alt="cta-bg" class="absolute inset-0 md:w-full h-full object-cover z-0">
 
       <div class="container relative z-10">
         <div class="text-center">
@@ -183,10 +183,10 @@
       <div class="container overflow-hidden">
         <h2 class="x-title about-title split-text">About Us</h2>
 
-        <div class="md:mt-[70px] mt-4 relative">
-          <div class="flex gap-20 items-center overflow-hidden w-full max-w-full md:flex-row flex-col">
+        <div class="md:mt-[70px] mt-12 relative">
+          <div class="flex gap-x-20 gap-y-6 items-center overflow-hidden w-full max-w-full md:flex-row flex-col">
             <div class="md:w-[336px] w-full">
-              <img src="{{ asset('images/logo-icon.svg') }}" alt="about-us" class="w-full object-cover">
+              <img src="{{ asset('images/logo-icon.svg') }}" alt="about-us" class="md:w-full w-32 mx-auto object-cover">
             </div>
 
             <div class="w-full max-w-full">
