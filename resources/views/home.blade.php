@@ -9,6 +9,15 @@
         })(window,document,'script','dataLayer','GTM-NZ4HSB2B');</script>
         <!-- End Google Tag Manager -->
 
+        <!-- Google tag (gtag.js) -->
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-SL2RL1X1PM');
+        </script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
